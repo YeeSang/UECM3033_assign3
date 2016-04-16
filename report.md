@@ -16,14 +16,16 @@ The reports, codes and supporting documents are to be uploaded to Github at:
 Explain how you implement your `task1.py` here.
 
 **In task1, I defined a function called gausslegendre() with four parameter which are integral function, lower boudary, upper boundary, and number of sample set in size 20. The function is based on the general form of a Gauss-Legendre quadrature formula:**
-	![equation](https://c5.staticflickr.com/2/1612/26189413220_1df700541e.jpg)
+
+![equation](https://c5.staticflickr.com/2/1612/26189413220_1df700541e.jpg)
 
 **At the result, we are compared between the exact value of integral function and value computed by using Gauss-Legendre quadrature method.**
 
 Explain how you get the weights and nodes used in the Gauss-Legendre quadrature.
 
 **Using built-in module `numpy.polynomial.legendre.leggauss(deg)` to produced the value of x and w which are sample points(nodes) and its weights. The result can be tested up to 100, higher degree might lead to problematic. The weights are determined by using the fact:**
-	![equation](https://c4.staticflickr.com/2/1628/26467620595_01462cfb8f_m.jpg)
+
+![equation](https://c4.staticflickr.com/2/1628/26467620595_01462cfb8f_m.jpg)
 
 **where where c is a constant independent of k and x_k is the k’th root of L_n, and then scaling the results to get the right value when integrating 1.**
 
