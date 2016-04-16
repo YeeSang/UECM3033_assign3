@@ -10,7 +10,7 @@ UECM3033 Assignment #3 Report
 
 The reports, codes and supporting documents are to be uploaded to Github at: 
 
-[https://github.com/weihaolem/UECM3033_assign3](https://github.com/your_github_id/UECM3033_assign3)
+[https://github.com/weihaolem/UECM3033_assign3](https://github.com/weihaolem/UECM3033_assign3)
 
 
 Explain how you implement your `task1.py` here.
