@@ -4,10 +4,15 @@ import sympy as sy
 #You can import some modules or create additional functions
 
 # DO NOT CHANGE THE NAME OF gausslegendre() function
-def gausslegendre(f, a, b, n=20):
-    ans = 0
-    # Edit here to implement your code
 
+        
+
+def gausslegendre(f, a, b, n=20):
+    # Edit here to implement your code
+    ans = 0
+    x, w = np.polynomial.legendre.leggauss(n)
+    t = 0.5*(x + 1)*(b - a) + a
+    ans = sum(w*f(t))*((b-a)/2)
     return ans
 
 if __name__ == "__main__":
