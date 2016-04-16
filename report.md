@@ -18,11 +18,14 @@ Explain how you implement your `task1.py` here.
 **In task1, I defined a function called gausslegendre() with four parameter which are integral function, lower boudary, upper boundary, and number of sample set in size 20. The function is based on the general form of a Gauss-Legendre quadrature formula:**
 	![equation](https://c5.staticflickr.com/2/1612/26189413220_1df700541e.jpg)
 
-**At the result, we are compared the exact value of integral function and Gauss-Legendre quadrature method.**
+**At the result, we are compared between the exact value of integral function and value computed by using Gauss-Legendre quadrature method.**
 
 Explain how you get the weights and nodes used in the Gauss-Legendre quadrature.
 
-**Using built-in module `numpy.polynomial.legendre.leggauss(deg)` to produced the value of x and w which are sample points(nodes) and its weights. The result can be tested up to 100, higher degree might lead to problematic.**
+**Using built-in module `numpy.polynomial.legendre.leggauss(deg)` to produced the value of x and w which are sample points(nodes) and its weights. The result can be tested up to 100, higher degree might lead to problematic. The weights are determined by using the fact:**
+	![equation](https://c4.staticflickr.com/2/1628/26467620595_01462cfb8f_m.jpg)
+
+**where where c is a constant independent of k and x_k is the k’th root of L_n, and then scaling the results to get the right value when integrating 1.**
 
 ---------------------------------------------------------
 
@@ -36,11 +39,15 @@ Explain how you implement your `task2.py` here, especially how to use `odeint`.
 
 Put your graphs here and explain.
 ![prey-predatorPlot.png](prey-predatorPlot.png)
-**From the graph of population against time, prey(rabbits) and predators(foxes) are move closer as the year increases until intersection occured between 4th and 5th year. At the graph of prey versus predators, we see that the population of foxes(predators) decreased caused the population of rabbits(prey) increased without include other environment factors.**
+**From the graph of population against time, prey(rabbits) and predators(foxes) are move closer to each other as the year increases until intersection occured between 4th and 5th year. This mean after the intersection, population of rabbits are higher than population of its predators.**
+
+**At the graph of prey versus predators, we see that the population of foxes(predators) decreased caused the population of rabbits(prey) increased without include other environment factors.**
 
 Is the system of ODE sensitive to initial condition? Explain.
 ![sensitivityTest.png](sensitivityTest.png)
-**Task reqired to make a minor change if initial condition for y, which is y0 increased from 0.1 to 0.11. The comparison graph is plotted above. rabbits_t and foxes_t are present the new y0 and y1 respectively. From both graph, we cannnot see much of gap of those line between new and original plot. Therefore, the system of ODE are consider not sensitive to initial condition since minor change do not lead much effect to the original value.**
+**Task required to make a minor change if initial condition for y, which is y0 increased from 0.1 to 0.11. The comparison graph is plotted above. rabbits_t and foxes_t are represent the new y0 and y1 respectively. From both graphs, we cannnot see much of gap of those line between new and original plot.**
+
+**Therefore, the system of ODE are consider not sensitive to initial condition since minor change do not lead much effect to the original value.**
 
 -----------------------------------
 
