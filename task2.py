@@ -1,71 +1,44 @@
-import matplotlib.pyplot as plt
 import numpy as np
-from scipy.integrate import odeint
-
-a=1.0
-b=0.2
-def func(y,t):
-    # Defines the differential equations
-    y0, y1 = y
-    return [(a*(y0 - y0*y1)), (b*(-y1 + y0*y1))]
-
-def Psfigure(t, prey,predators):
-    fig=plt.figure(1)
-    plt.subplot(211)
-    plt.plot(t, prey, "+", label="rabbits")
-    plt.plot(t, predators, "rx", label="Foxes")
-    plt.xlabel("Year")
-    plt.ylabel("Population")
-    plt.title("Population against Time(Year)")
-    plt.legend();
-    plt.subplot(212)
-    plt.plot(prey, predators, "-")
-    plt.xlabel("Rabbits")
-    plt.ylabel("Foxes")
-    plt.title("Predators against Prey");
-    fig = plt.gcf()
-    fig.set_size_inches(15,15)
-    return plt.show()
+import scipy.integrate as spIn
+import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
+        
+    def ode(y,t,a,b):
+        y0, y1 = y
+        return [a*(y0 - y0*y1),b*(-y1 + y0*y1)]
+        
+    a = 1.0
+    b = 0.2    
+    initial_y = [0.1,1.0]
+    t = np.linspace(0, 5, 200)
     
-    t0=0
-    tn=5
-    N=100
-    t = np.linspace(t0,tn,N+1)
+    sln = spIn.odeint(ode,initial_y,t,args=(a,b))
+  
+    plt.plot(t, sln[:, 0], 'b', label='y0(t)')
+    plt.plot(t, sln[:, 1], 'g', label='y1(t)')
+    plt.legend(loc='best')
+    plt.xlabel('t')
+    plt.ylabel('y(t)')
+    plt.title('Graph of y(t) against t')
+    plt.grid()
+    plt.show()
     
-    # System ODE for y0(t=0)=0.1, y1(t=0)=1.0
-    y_0= [0.1,1.0]
-    Ps = odeint(func, y_0, t)
-    prey = Ps[:,0]
-    predators = Ps[:,1]
-    #its plot
-    Psfigure(t, prey, predators)
+    plt.plot(sln[:, 0],sln[:,1], 'r', label='y1 against y0')
+    plt.xlabel('y0')
+    plt.ylabel('y1')
+    plt.title('Graph of y1 against y0 with initial value y0=0.1 y1=1.0')
+    plt.grid()
+    plt.show()
+
     
-    #Test sensitivity of initial conditions
-    y_0= [0.11,1.0]
-    Ps1 = odeint(func, y_0, t)
-    prey1 = Ps[:,0]
-    predators1 = Ps[:,1]
-    fig=plt.figure(1)
-    plt.subplot(211)
-    plt.plot(t, prey, "b+", label="rabbits")
-    plt.plot(t, predators, "gx", label="Foxes")
-    plt.plot(t, prey1, "r-", label="rabbits_t")
-    plt.plot(t, predators1, "m--", label="foxes_t")
-    plt.xlabel("Year")
-    plt.ylabel("Population")
-    plt.title("Population against Time(Year)")
-    plt.legend();
-    plt.subplot(212)
-    plt.plot(prey, predators, "-")
-    plt.plot(prey1, predators1, "rx")
-    plt.xlabel("Rabbits")
-    plt.ylabel("Foxes")
-    plt.title("Predators against Prey");
-    fig = plt.gcf()
-    fig.set_size_inches(15,15)
-    plt.show();
+    initial_y_new = [0.11, 1.0]
+    sln = spIn.odeint(ode,initial_y_new,t,args=(a,b))
     
-    
-    
+    plt.plot(sln[:, 0],sln[:,1], 'r', label='y1 against new y0')
+    plt.xlabel('y0')
+    plt.ylabel('y1')
+    plt.title('Graph of y1 against y0 with initial value y0=0.11 y1=1.0')
+    plt.grid()
+    plt.show()
+
